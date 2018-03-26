@@ -36,9 +36,11 @@
           </form>
           <hr>
           
-          <?php
-            showTable();
-          ?>
+              <?php
+              showTable();
+              ?>
+              
+          </form> 
         </main>
     </body>
 </html>

@@ -38,7 +38,9 @@
                 ORDER BY `foodName` ASC";
         $stmt = $dbConn -> prepare ($sql);
         $stmt -> execute ();
-            
+        
+        
+        
         echo '<div class="container" style="centered" >';
         //if the increasing alphabetically is selected
         if ($sort == "inc" and $button == true) {
@@ -51,9 +53,13 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
+            echo "<form>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td>' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                
             }
+             echo "</form>";
             echo '</table>';
         }
         else if($sort == "dec" and $button == true) {
@@ -66,9 +72,11 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
+            echo "<form>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td>' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+            echo "</form>";
             echo '</table>';
         }
         else if($sort == "avail" and $button == true) {
@@ -81,11 +89,12 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
+            echo "<form>";
             while ($row = $stmt -> fetch())  {
                 if($row['status'] == "Available") {
-                    echo  '<tr>' . '<td>' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
-            
+                    echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
                 }
+                echo "</form>";
                 }
             echo '</table>';
         }
@@ -99,9 +108,11 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
+            echo "<form>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td>' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+            echo "</form>";
             echo '</table>';
         }
         else if($sort == "type2" and $button == true) {
@@ -114,9 +125,13 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
+            
+            // form here
+            echo "<form>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td>' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+            echo "</form>";
             echo '</table>';
         }
         else if($sort == "price1" and $button == true) {
@@ -129,9 +144,11 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
+            echo "<form>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td>' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+            echo "</form>";
             echo '</table>';
         }
         else if($sort == "price2" and $button == true) {
@@ -144,9 +161,11 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
+            echo "<form>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td>' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+            echo "</form>";
             echo '</table>';
         }
         echo '</div>';

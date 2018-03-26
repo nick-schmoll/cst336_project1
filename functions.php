@@ -1,4 +1,5 @@
 <?php
+    session_start();
     
         $sort;
     function showTable(){
@@ -53,13 +54,16 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
-            echo "<form>";
+            echo "<form method='post' action='cart.php'>";
             while ($row = $stmt -> fetch())  {
                 
-                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                // echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "  " .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+
                 
             }
-             echo "</form>";
+            echo "<input type='submit' value='add to Cart' />";
+            echo "</form>";
             echo '</table>';
         }
         else if($sort == "dec" and $button == true) {

@@ -1,0 +1,222 @@
+This program allows users to add products they wih to purchase to the cart. They can also view more 
+information of the product when
+they click on "request info" button.
+In addition, they can also see what thier entire cart looks like.
+
+-- phpMyAdmin SQL Dump
+-- version 4.0.10deb1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 13, 2017 at 02:13 PM
+-- Server version: 5.5.53-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.20
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `project_1`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `checkout`
+--
+
+CREATE TABLE IF NOT EXISTS `checkout` (
+  `checkoutId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `foodId` varchar(5) NOT NULL,
+  `checkoutDate` date NOT NULL,
+  PRIMARY KEY (`checkoutId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `checkout`
+--
+
+INSERT INTO `checkout` (`checkoutId`, `userId`, `foodId`, `checkoutDate`) VALUES
+(1, 16969, '007', '2017-03-16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
+--
+
+CREATE TABLE IF NOT EXISTS `department` (
+  `departmentId` smallint(6) NOT NULL AUTO_INCREMENT,
+  `deptName` varchar(50) NOT NULL,
+  PRIMARY KEY (`departmentId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`departmentId`, `deptName`) VALUES
+(1, 'Meat'),
+(2, 'Vegetables'),
+(3, 'Dairy'),
+(4, 'Alchohal'),
+(5, 'Beverages'),
+(6, 'Snacks'),
+(7, 'Candy'),
+(8, 'Fruit'),
+(9, 'Bread'),
+(10, 'Misc'),
+(11, 'frozen');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food`
+--
+
+CREATE TABLE IF NOT EXISTS `food` (
+  `foodId` varchar(5) NOT NULL,
+  `foodName` varchar(50) NOT NULL,
+  `foodType` varchar(20) NOT NULL,
+  `price` float NOT NULL,
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`foodId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `food`
+--
+
+INSERT INTO `food` (`foodId`, `foodName`, `foodType`, `price`, `status`) VALUES
+('001', 'Granny smith apple', 'Fruit', 1, 'Available'),
+('002', 'Avacado', 'Fruit', 2.75, 'Available'),
+('003', 'Orange', 'Fruit', 1.50, 'available'),
+('004', 'Pomegranate', 'Fruit', 3.00 , 'Out of Stock'),
+('005', 'Grapes', 'Fruit', 3.25, 'Available'),
+('006', 'Jalepenos', 'Fruit', 0.89, 'Available'),
+('011', 'Titos Vodka', 'Vodka', 25.00, 'Available'),
+('012', 'Vodka of the Gods', 'Vodka', 13.25, 'Available'),
+('013', 'Two Buck chuk', 'Wine', 2.25, 'Available'),
+('014', 'Kalua', 'Liquer', 11.55, 'Out of Stock'),
+('015', 'Glenlivet', 'Whiskey', 32.50, 'Available'),
+('016', 'Smirnoff', 'Vodka', 15.00, 'Available'),
+('021', 'Rib eye', 'Meat', 5.50, 'Available'),
+('022', 'Pork ribs', 'Meat', 11.85, 'Available'),
+('023', 'Peppered beef jerkey', 'Meat', 8.25, 'Available'),
+('024', 'Cod', 'Fish', 4.25, 'Out of Stock'),
+('026', 'Chicken breasts', 'Chicken', 11.75, 'Available'),
+('027', 'Italian spricy sausage', 'Meat', 4.99, 'Available'),
+('028', 'Sliced roast beef', 'meat', 6.99, 'Available'),
+('029', 'Sliced pastrami', 'meat', 9.25, 'Out of Stock'),
+('031', 'Celary', 'Vegetable', 3.00, 'Available'),
+('032', 'Potatoe', 'Vegetable', 2.25, 'available'),
+('033', 'Carrots', 'Vegetable', 3.33, 'available'),
+('034', 'Beets', 'Vegetable', 1.00, 'Available'),
+('035', 'Radish', 'Vegetable', 2.25, 'Available'),
+('036', 'Yams', 'Vegetable', 2.00, 'Out of Stock'),
+('037', 'Spinach', 'Vegetable', 1.75, 'Available'),
+('039', 'Assorted leafy greens', 'Vegetable', 5.00, 'Available'),
+('041', 'Chicken mini tacos', 'Frozen', 4.75, 'Available'),
+('042', 'Beef mini tacos', 'Frozen', 5.25, 'Out of Stock'),
+('043', 'Chicken nuggets', 'Frozen', 4.50, 'Available'),
+('044', 'Pepporoni pizza, 3 pack', 'Frozen', 10.99, 'Available'),
+('051', 'Sourdoe bread', 'Bread', 3.99, 'available'),
+('052', 'Wholegrain wheat bread', 'Bread', 5.00, 'Available'),
+('053', 'Pita bread', 'Bread', 2.99, 'Available'),
+('054', 'Hamburger buns, 12 pack', 'Bread', 4.00, 'Available'),
+('055', 'Hotdog buns', 'Bread', 4.00, 'Available'),
+('061', 'Sour patch kids', 'Candy', 2.25, 'Available'),
+('062', 'Toberlone', 'Candy', 2.00, 'Out of Stock'),
+('071', 'Organic Grapefruit kombucha', 'beverage', 3.25, 'Available');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE IF NOT EXISTS `staff` (
+  `staffId` smallint(6) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(15) NOT NULL,
+  `lastName` varchar(20) NOT NULL,
+  PRIMARY KEY (`staffId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staffId`, `firstName`, `lastName`) VALUES
+(1, 'Karen', 'White'),
+(2, 'Maggie', 'Kwon');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `userId` int(11) NOT NULL,
+  `firstName` varchar(25) NOT NULL,
+  `lastName` varchar(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `role` varchar(10) NOT NULL,
+  `deptId` smallint(6),
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userId`, `firstName`, `lastName`, `email`, `phone`, `role`, `deptId`) VALUES
+(0, 'Daniel', 'Crews', 'dcrews@csumb.edu', '1231231234', 'Customer', NULL),
+(211, 'Linda', 'Reyes', 'lreyes@csumb.edu', '(626)222-2222', 'Customer', NULL),
+(16969, 'Ryan', 'LeBon', 'rian@csuhotmail.com', '831-453-3231', 'Customer', NULL),
+(126969, 'Ryan', 'LeBon', 'rian@csuhotmail.com', '831-453-3231', 'Customer', NULL),
+(987642, 'Tomas', 'Hernandez', 'tohernandez@csumb.edu', '5555555555', 'Staff', 7),
+(987654, 'Kara', 'Spencer', 'kaspencer@csumb.edu', '(702)123-4567', 'Customer', NULL),
+(1001235, 'Austin', 'Brown', 'hello@gmail.com', '(555) 220-8268', 'Customer', NULL),
+(1002345, 'Michael', 'Cwener', 'mcwener@csumb.edu', '(123)-123-1234', 'Customer', NULL),
+(1110011, 'Jeff', 'Gearhart', 'JGcollegestudent@csumb.edu', '(555)-234-5678', 'Customer', NULL),
+(1111111, 'Valerie', 'Hinojoza-Rood', 'vhinojoza-rood@csumb.edu', '555-555-5555', 'Customer', NULL),
+(1111234, 'Tommy', 'Ha', 'makaveli1996@csumb.edu', '831-555-5555', 'Customer', NULL),
+(1111295, 'Brandon', 'Ginn', 'some@email.com', '(999) 888-7777', 'Staff', 1),
+(1112223, 'Cody', 'Parker', 'bestEmail@gmail.com', '(555) 123-0124', 'Staff', 3),
+(1114534, 'Rick', 'James', 'maryjane420@csumb.edu', '8315551234', 'Staff', 4),
+(1122334, 'Babak', 'Chehraz', 'bchehraz@csumb.edu', '(123) 456-7890', 'Customer', NULL),
+(1134235, 'Bill', 'Gates', 'BillGates@microsoft.com', '(831)-444-8887', 'Customer', NULL),
+(1212121, 'Yang', 'Jing', 'myemail@google.com', '3333333333', 'Customer', NULL),
+(1232123, 'Bernie', 'Sanders', 'OurLordAndSavior@gmail.com', '(831) 555-5555', 'Staff', 5),
+(1234567, 'Daniel', 'Crews', 'dcrews@csumb.edu', '(123)123-1234', 'Customer', NULL),
+(1234577, 'Bob', 'Bobbington', 'bbob@gmail.com', '777-555-7777', 'Staff', 6),
+(1234875, 'Darth', 'Vader', 'darksidebestside@sbcglobal.net', '(831)5555555', 'Customer', NULL),
+(1236542, 'Eduardo', 'Vilasenor', 'asdf@gmail.com', '9764978123', 'Customer', NULL),
+(1239423, 'Andrew', 'Sanchez', 'blasdfl@gmail.com', '911', 'Staff', 7),
+(1346795, 'Eduardo', 'Vilasenor', 'asdf@gmail.com', '9764978123', 'Customer', NULL),
+(1485503, 'Carsen', 'Yates', 'totallynotafakeemailaddress@totallyarealdomain.tot', '5599999999', 'Customer', NULL),
+(1919191, 'Billy', 'Boy', 'BillyBoy@Billyboy.com', '(555) 533-5678', 'Customer', NULL),
+(1999999, 'Soul', 'Player', 'splayer@everywhere', '(987)654-3210', 'Staff', 8),
+(2101997, 'Minh Tan', 'Le', 'mtl@csumb.edu', '(666) 210-1997', 'Customer', NULL),
+(2121212, 'Lin', 'Hao', 'lin@csumb.edu', '1370247394', 'Customer', NULL),
+(2123215, 'Bob', 'Stuart', 'BS@comcast.net', '(555) 789-6352', 'Customer', NULL),
+(2183308, 'Brandon', 'Stillwell', 'brstillwell@csumb.edu', '(281)330-8004', 'Customer', NULL),
+(2323232, 'Tyler', 'Chargin', 'tchargin@csumb.edu', '(408) 394-1477', 'Customer', NULL),
+(2323242, 'Tyler', 'Chargin', 'tchargin@csumb.edu', '(408) 394-1477', 'Customer', NULL),
+(2345436, 'Daniel', 'Wilson', 'hello@hello.com', '(325)123-4234', 'Customer', NULL),
+(2727272, 'Brian', 'Little', 'thisisreal@real.com', '(555)555-5050', 'Staff', 2),
+(3256478, 'Pedro', 'Lopez', 'dfrgtg90@yahoo.com', '(831)569-1254', 'Staff', 2),
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

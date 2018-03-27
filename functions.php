@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html>
+    
+  <head>
+        <title>PHP HTML TABLE DATA SEARCH</title>
+        <link href="CSS/styles.css" rel="stylesheet" type="text/css" />
+
+        <style>
+            table,tr,th,td
+            {
+                border: 1px solid black;
+                padding-right: 20px;
+            }
+        </style>
+    </head>
+</html>
 <?php
     session_start();
     
@@ -17,9 +33,9 @@
         
         //var_dump($hasConnUrl);
         $host = $hasConnUrl ? $connParts['host'] : getenv('IP');
-        $dbname = $hasConnUrl ? ltrim($connParts['path'],'/') : 'project_1';
+        $dbname = $hasConnUrl ? ltrim($connParts['path'],'/') : 'food_checkout';
         $username = $hasConnUrl ? $connParts['user'] : getenv('C9_USER');
-        $password = $hasConnUrl ? $connParts['pass'] : 'Lalaland1!';
+        $password = $hasConnUrl ? $connParts['pass'] : '';
         
         $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
         $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);         
@@ -57,9 +73,9 @@
             echo "<form method='post' action='cart.php'>";
             while ($row = $stmt -> fetch())  {
                 
-                // echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
-                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "  " .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
-
+                // echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td> '  . '</tr>';
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "       $" .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td> '  . " " . '<td>' .  $row['status'] . '</td>'  .'<td>' .  "These products are produced by the locals" . '</td>'. '</tr>';
+                
                 
             }
             echo "<input type='submit' value='add to Cart' />";
@@ -76,10 +92,12 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
-            echo "<form>";
+            echo "<form method='post' action='cart.php'>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "       $" .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td> '  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+            echo "<input type='submit' value='add to Cart' />";
+
             echo "</form>";
             echo '</table>';
         }
@@ -93,13 +111,16 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
-            echo "<form>";
+            echo "<form method='post' action='cart.php'>";
             while ($row = $stmt -> fetch())  {
                 if($row['status'] == "Available") {
-                    echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "       $" .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td> '  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
                 }
+            }
+          echo "<input type='submit' value='add to Cart' />";
+
                 echo "</form>";
-                }
+                
             echo '</table>';
         }
         else if($sort == "type1" and $button == true) {
@@ -112,10 +133,12 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
-            echo "<form>";
+            echo "<form method='post' action='cart.php'>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "       $" .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td> '  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+          echo "<input type='submit' value='add to Cart' />";
+
             echo "</form>";
             echo '</table>';
         }
@@ -131,10 +154,12 @@
             echo '<table style="centered">';
             
             // form here
-            echo "<form>";
+            echo "<form method='post' action='cart.php'>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "      $" .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td> '  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+            echo "<input type='submit' value='add to Cart' />";
+
             echo "</form>";
             echo '</table>';
         }
@@ -148,10 +173,12 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
-            echo "<form>";
+            echo "<form method='post' action='cart.php'>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "      $" .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td> '  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+             echo "<input type='submit' value='add to Cart' />";
+
             echo "</form>";
             echo '</table>';
         }
@@ -165,10 +192,12 @@
             $stmt -> execute ();
             
             echo '<table style="centered">';
-            echo "<form>";
+            echo "<form method='post' action='cart.php'>";
             while ($row = $stmt -> fetch())  {
-                echo  '<tr>' . '<td><input type="checkbox" name="items[]" />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td>'  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
+                 echo  '<tr>' . '<td><input type="checkbox" name="items[]" value = "' . $row['foodName'] . "      $" .  $row['price'] . '"  />' . $row['foodName'] . "</td>" . " " . '<td>' . $row['foodType'] . '</td>'  . " " . '<td>' . $row['price'] . '</td> '  . " " . '<td>' .  $row['status'] . '</td>'  . '</tr>';
             }
+            echo "<input type='submit' value='add to Cart' />";
+        
             echo "</form>";
             echo '</table>';
         }

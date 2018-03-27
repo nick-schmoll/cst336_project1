@@ -20,7 +20,7 @@
     </head>
     <body>
        <main>
-        <h1> food Checkout </h1>
+        <h1> Food Checkout </h1>
    
           <form method="post">
           	  Sort by: 
